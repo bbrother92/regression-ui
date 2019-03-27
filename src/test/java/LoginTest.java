@@ -20,7 +20,7 @@ public class LoginTest extends BaseTest {
 				  .login("johndoetestexample2018@gmail.com","Test2018")
 				  .confirmLogged()
 		  ;
-		  sleep(9000);
+//		  sleep(9000);
 		
 	}
 	
