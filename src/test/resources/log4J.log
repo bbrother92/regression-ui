@@ -1,0 +1,2 @@
+2019-03-27 22:16:14 INFO  [main] wdm.WebDriverManager(WebDriverManager.java:546) - Using chromedriver 73.0.3683.68 (since Google Chrome 73 is installed in your machine)
+2019-03-27 22:16:14 INFO  [main] wdm.WebDriverManager(WebDriverManager.java:1035) - Exporting webdriver.chrome.driver as C:\Users\vi\.m2\repository\webdriver\chromedriver\win32\73.0.3683.68\chromedriver.exe
