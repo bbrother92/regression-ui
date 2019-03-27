@@ -1,4 +1,7 @@
-target/
+target/**
 .idea/
 build/
 *.iml
+.allure
+*.log
+src/test/resources/*.log
