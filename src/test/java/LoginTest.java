@@ -3,27 +3,27 @@ import io.qameta.allure.selenide.AllureSelenide;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 
+
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.sleep;
 
 public class LoginTest extends BaseTest {
-	
-	// page url
-	private static final String URL = "https://www.mideastore.ru/";
-	
-	
-	@Test
-	public void loginTest() {
-		
-		open(URL, LoginPage.class)
-				  .toLoginForm()
-				  .login("johndoetestexample2018@gmail.com","Test2018")
-				  .confirmLogged()
-		  ;
-//		  sleep(9000);
-		
-	}
-	
+
+    // page url
+    private static final String URL = "https://www.mideastore.ru/";
+
+
+    @Test
+    public void loginTest() {
+        open(URL, LoginPage.class)
+                .toLoginForm()
+                .login("johndoetestexample2018@gmail.com", "Test2018")
+                .confirmLogged();
+        new LoginPage().logout();
+		  sleep(9000);
+
+    }
+
 //	/**
 //	 * Login with wrong pass and email
 //	 */
