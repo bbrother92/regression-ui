@@ -1,6 +1,7 @@
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.Step;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,6 +53,8 @@ public abstract class BaseTest {
 	@AfterTest
 	public void clear() {
 	}
-	
-	
+	@Step
+	public void logAllure(String log){
+		logger.info("Logged to allure: " + log);
+	}
 }

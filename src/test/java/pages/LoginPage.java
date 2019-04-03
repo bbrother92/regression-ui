@@ -14,6 +14,7 @@ public class LoginPage {
      */
     private SelenideElement accountLink = $(".authorization-link a");
     private String accountLinkTitle = "Войти";
+
     /**
      * Login form fields
      */
@@ -27,6 +28,18 @@ public class LoginPage {
     private SelenideElement logout = $x("//a[contains(@href,'logout')]");
     private String logoutMsg = "You are signed out";
     private SelenideElement logoutMsgLoc = $(".page-title");
+
+    /*
+     * Login validation
+     */
+    public String invldMailPass = "неправильный адрес электронной почты (email) или пароль.";
+    public SelenideElement invldMailPassLoc = $("div.page.messages");
+    public String passRequired = "Это поле обязательно для заполнения.";
+    public SelenideElement passErrorLoc = $("#pass-error");
+    public String mailRequired = "Это поле обязательно для заполнения.";
+    public SelenideElement mailErrorLoc = $("#email-error");
+
+
 
 
     public AccountPanel login(String email, String password) {
