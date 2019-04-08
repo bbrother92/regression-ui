@@ -6,6 +6,7 @@ import io.qameta.allure.selenide.AllureSelenide;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.*;
+import org.testng.xml.XmlTest;
 
 import java.lang.reflect.Method;
 import java.util.Locale;
@@ -49,7 +50,16 @@ public abstract class BaseTest {
 		logger.info("Exiting test suite");
 		close();
 	}
-	
+	@BeforeClass
+	public void setUpClass(XmlTest method)
+	{
+//		logger.info("Starting test class: " + method.getClass().toString());
+	}
+	@AfterClass
+	public void tearDownClass(XmlTest method)
+	{
+//		logger.info("Exiting test class: " + method.getClass().toString());
+	}
 	@AfterTest
 	public void clear() {
 	}

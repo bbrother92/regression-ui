@@ -4,6 +4,7 @@
     <test name="test1" verbose="10">
         <classes>
             <class name="LoginTest"></class>
+            <class name="RegTest"></class>
         </classes>
     </test>
 </suite>

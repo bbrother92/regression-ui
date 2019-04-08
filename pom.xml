@@ -74,7 +74,7 @@
                             -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                         </argLine>
                         <!--<systemPropertyVariables>-->
-                            <!--<selenide.reports>target/reports</selenide.reports>-->
+                            <!--<selenide.reportsFolder>target/reports</selenide.reportsFolder>-->
                         <!--</systemPropertyVariables>-->
                     </configuration>
                     <dependencies>

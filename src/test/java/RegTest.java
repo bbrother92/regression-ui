@@ -1,11 +1,13 @@
 import com.codeborne.selenide.Condition;
+import io.qameta.allure.Feature;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.RegPage;
 
 import static com.codeborne.selenide.Selenide.open;
-import static com.codeborne.selenide.Selenide.sleep;
 
+
+@Feature("Тесты валидации полей регистрации")
 public class RegTest extends BaseTest {
 
     private static final String URL = "https://www.mideastore.ru/";
@@ -40,7 +42,7 @@ public class RegTest extends BaseTest {
         open(URL, RegPage.class)
                 .toForm()
                 .submit("Максимилиан", "Фамилия", "johndoetestexample2018@gmail.com", "Test2018", "");
-        Assert.assertEquals(new RegPage().passMsgLoc.getText(), "Это поле обязательно для заполнения.");
+        Assert.assertEquals(new RegPage().passconfirmMsgLoc.waitUntil(Condition.visible,5000).getText(), "Это поле обязательно для заполнения.");
     }
 
     @Test
@@ -64,7 +66,7 @@ public class RegTest extends BaseTest {
         open(URL, RegPage.class)
                 .toForm()
                 .submit("Максимилиан", "Фамилия", "john2018gmail.com", "test5", "test5");
-        Assert.assertEquals(new RegPage().passMsgLoc.getText(), "Минимальная длина этого поля должна быть равна или больше 8 символов. Пробелы перед и после символов будут проигнорированы.");
+        Assert.assertEquals(new RegPage().passMsgLoc.getText(), "Минимальная длина этого поля должна быть равна или больше 6 символов. Пробелы перед и после символов будут проигнорированы.");
     }
 
     @Test

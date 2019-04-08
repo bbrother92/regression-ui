@@ -1,4 +1,5 @@
 import com.codeborne.selenide.Condition;
+import io.qameta.allure.Feature;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -6,6 +7,7 @@ import pages.LoginPage;
 
 import static com.codeborne.selenide.Selenide.open;
 
+@Feature("Тесты валидации полей логина и тест входа/выхода")
 public class LoginTest extends BaseTest {
 
     private static final String URL = "https://www.mideastore.ru/";
