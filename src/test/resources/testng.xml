@@ -1,10 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Suite">
-    <test name="test1" verbose="10">
+<suite name="smoke_suite">
+    <test name="logintest1" verbose="2" preserve-order="true" enabled="true">
         <classes>
-            <class name="LoginTest"></class>
-            <class name="RegTest"></class>
+            <class name="LoginTest">
+                <methods>
+                    <include name="loginTest"/>
+                    <include name="wrongMailTest"/>
+                    <include name="wrongPassTest"/>
+                    <include name="invldMailTest"/>
+                    <include name="blankPassTest"/>
+                    <include name="blankMailTest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="registrationtest1" verbose="2" preserve-order="true" enabled="true">
+        <classes>
+            <class name="RegTest">
+                <methods>
+                    <include name="blankNameTest"/>
+                    <include name="blankLastnameTest"/>
+                    <include name="blankPassTest"/>
+                    <include name="blankPassconfirmTest"/>
+                    <include name="matchPassTest"/>
+                    <include name="invalidEmailTest"/>
+                    <include name="smallPassTest"/>
+                    <include name="sameUserTest"/>
+                </methods>
+            </class>
         </classes>
     </test>
 </suite>
