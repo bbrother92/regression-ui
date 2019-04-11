@@ -1,9 +1,10 @@
+package mid;
+
 import com.codeborne.selenide.Condition;
 import io.qameta.allure.Feature;
 import org.testng.Assert;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import pages.LoginPage;
+import mid.pages.LoginPage;
 
 import static com.codeborne.selenide.Selenide.open;
 

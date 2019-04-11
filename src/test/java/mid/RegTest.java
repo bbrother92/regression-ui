@@ -1,8 +1,10 @@
+package mid;
+
 import com.codeborne.selenide.Condition;
 import io.qameta.allure.Feature;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.RegPage;
+import mid.pages.RegPage;
 
 import static com.codeborne.selenide.Selenide.open;
 

@@ -1,4 +1,4 @@
-package util;
+package mid.util;
 
 public enum User {
 	Test("testjohndoe92@gmail.com", "test"),

@@ -1,7 +1,11 @@
-package pages;
+package mid.pages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import mid.BaseTest;
+import mid.util.Utils;
+
+import java.util.Scanner;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
@@ -39,7 +43,27 @@ public class LoginPage {
     public String mailRequired = "Это поле обязательно для заполнения.";
     public SelenideElement mailErrorLoc = $("#email-error");
 
+    /*
+     * Catalog
+     */
+    public SelenideElement catalog  = $("span.vmagicmenu-subtitle");
+    public String menuLoc = "//*[contains(@class,'vertical-menu')]//a[contains(.,'%s')]";
+    public String submenuLoc =  "//*[contains(@class,'vertical-menu')]//a[contains(.,'%s')]" ;
 
+    public void gotoCatalog(String menu, String submenu) {
+//        if (menu.equals("Отдельностоящая техника")) {
+//            // changes locator for 2nd category
+//            this.submenuLoc = $x("(//*[contains(@class,'vertical-menu')]//a[contains(.,'%s')])[2]");
+//        } else {
+//            this.submenuLoc = $x("//*[contains(@class,'vertical-menu')]//a[contains(.,'%s')]");
+//        }
+        catalog.waitUntil(Condition.visible, 5000).scrollTo().click();
+        String menuf = String.format(this.menuLoc, menu);
+        $x(menuf).waitUntil(Condition.visible, 5000).hover();
+        String smenuf = String.format(this.submenuLoc, submenu);
+        $x(smenuf).waitUntil(Condition.visible, 5000).scrollTo().click();
+        System.out.println("sleeept2");
+    }
 
 
     public AccountPanel login(String email, String password) {

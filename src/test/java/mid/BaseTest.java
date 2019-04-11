@@ -1,3 +1,5 @@
+package mid;
+
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.logevents.SelenideLogger;
@@ -7,7 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
-import org.testng.xml.XmlTest;
 
 import java.lang.reflect.Method;
 import java.util.Locale;
@@ -16,10 +17,10 @@ import static com.codeborne.selenide.Selenide.close;
 
 /**
  * Superclass for tests:
- * {@link  LoginTest,}
+ * {@link  LoginTest ,}
  */
 public abstract class BaseTest {
-    protected Logger logger = LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
+    public static Logger logger = LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
 
     @BeforeSuite
     public void setUp(ITestContext context) {
@@ -31,34 +32,34 @@ public abstract class BaseTest {
         Locale.setDefault(Locale.ENGLISH);
 //        logger = LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME); //TODO why npe
 
-        logger.info("Starting test suite " + context.getCurrentXmlTest().getSuite().getName());
+        logAllure("Starting test suite " + context.getCurrentXmlTest().getSuite().getName());
     }
 
     @BeforeMethod
     public void setUpMethod(Method method) {
-        logger.info("Starting test method: " + method.getName());
+        this.logAllure("Starting test method: " + method.getName());
     }
 
     @AfterMethod
     public void tearDownMethod(Method method) {
-        logger.info("Exiting test method: " + method.getName());
+        logAllure("Exiting test method: " + method.getName());
         WebDriverRunner.getWebDriver().manage().deleteAllCookies();
 
     }
 
     @BeforeClass
     public void setUpClass(ITestContext context) {
-        logger.info("Starting test class: " + context.getCurrentXmlTest().getXmlClasses().toString());
+        logAllure("Starting test class: " + context.getCurrentXmlTest().getXmlClasses().toString());
     }
 
     @AfterClass
     public void tearDownClass(ITestContext context) {
-        logger.info("Exiting test class: " + context.getCurrentXmlTest().getXmlClasses().toString());
+        logAllure("Exiting test class: " + context.getCurrentXmlTest().getXmlClasses().toString());
     }
 
     @AfterSuite
     public void tearDown(ITestContext context) {
-        logger.info("Exiting test suite " + context.getCurrentXmlTest().getSuite().getName());
+        logAllure("Exiting test suite " + context.getCurrentXmlTest().getSuite().getName());
         close();
     }
 
@@ -66,7 +67,7 @@ public abstract class BaseTest {
 //	public void clear() {
 //	}
     @Step
-    public void logAllure(String log) {
+    public static void logAllure(String log) {
         logger.info("Logged to allure: " + log);
     }
 }

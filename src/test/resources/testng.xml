@@ -3,7 +3,7 @@
 <suite name="smoke_suite">
     <test name="logintest1" verbose="2" preserve-order="true" enabled="true">
         <classes>
-            <class name="LoginTest">
+            <class name="mid.LoginTest">
                 <methods>
                     <include name="loginTest"/>
                     <include name="wrongMailTest"/>
@@ -17,7 +17,7 @@
     </test>
     <test name="registrationtest1" verbose="2" preserve-order="true" enabled="true">
         <classes>
-            <class name="RegTest">
+            <class name="mid.RegTest">
                 <methods>
                     <include name="blankNameTest"/>
                     <include name="blankLastnameTest"/>
