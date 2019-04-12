@@ -1,8 +1,5 @@
 package mid.util;
 
-import mid.BaseTest;
-
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Utils {
