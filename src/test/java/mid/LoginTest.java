@@ -2,9 +2,9 @@ package mid;
 
 import com.codeborne.selenide.Condition;
 import io.qameta.allure.Feature;
+import mid.pages.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import mid.pages.LoginPage;
 
 import static com.codeborne.selenide.Selenide.open;
 

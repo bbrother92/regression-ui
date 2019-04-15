@@ -1,12 +1,11 @@
 package mid.pages;
 
-import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import org.testng.Assert;
 
 import static com.codeborne.selenide.Selenide.*;
+import static mid.util.Utils.logAllure;
 
 
 public class ComparePage {
@@ -30,6 +29,7 @@ public class ComparePage {
         itemCard.waitUntil(Condition.visible, 5000).scrollTo().click(); // click on item block to show up compare button
         String itemTitle = itemCardLink.waitUntil(Condition.visible, 5000).getText();
         compareBtn.waitUntil(Condition.visible, 5000).scrollTo().click();
+        logAllure("item added to list "+itemTitle);
         return itemTitle;
     }
 
@@ -38,24 +38,23 @@ public class ComparePage {
         String itemTitle = itemCardLink.waitUntil(Condition.visible, 5000).getText();
         itemCardLink.waitUntil(Condition.visible, 5000).click();
         compareBtn.waitUntil(Condition.visible, 5000).scrollTo().click();
+        logAllure("item added to list "+itemTitle);
         return itemTitle;
     }
 
     //todo test this
     public void checkInComparelist(String needle) {
         compareListLoc.waitUntil(Condition.visible, 5000).click();
-        System.out.println("sddfsdsfjkldfsjkldfsdsj");
+        logAllure("switching to new tab");
         switchTo().window(1);
         $(listTitles).waitUntil(Condition.visible, 5000);
         Boolean result = false;
         for (SelenideElement item : $$(listTitles)) {
-            System.out.println(item.getText());
+            logAllure("items in list: "+item.getText());
             if (item.getText().toLowerCase().contains(needle.toLowerCase())) {
                 result = true;
             }
         }
         Assert.assertTrue(result);
     }
-
-
 }

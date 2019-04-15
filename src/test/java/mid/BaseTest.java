@@ -1,12 +1,8 @@
 package mid;
 
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.logevents.SelenideLogger;
-import io.qameta.allure.Step;
 import io.qameta.allure.selenide.AllureSelenide;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
 
@@ -14,13 +10,13 @@ import java.lang.reflect.Method;
 import java.util.Locale;
 
 import static com.codeborne.selenide.Selenide.close;
+import static mid.util.Utils.logAllure;
 
 /**
  * Superclass for tests:
  * {@link  LoginTest ,}
  */
 public abstract class BaseTest {
-    public static Logger logger = LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
 
     @BeforeSuite
     public void setUp(ITestContext context) {
@@ -37,14 +33,16 @@ public abstract class BaseTest {
 
     @BeforeMethod
     public void setUpMethod(Method method) {
-        this.logAllure("Starting test method: " + method.getName());
+        logAllure("Starting test method: " + method.getName());
     }
 
     @AfterMethod
     public void tearDownMethod(Method method) {
         logAllure("Exiting test method: " + method.getName());
-        WebDriverRunner.getWebDriver().manage().deleteAllCookies();
-
+//        WebDriverRunner.getWebDriver().manage().deleteAllCookies();
+//        clearBrowserCookies();
+//        clearBrowserLocalStorage();
+        close();
     }
 
     @BeforeClass
@@ -66,8 +64,5 @@ public abstract class BaseTest {
     //	@AfterTest
 //	public void clear() {
 //	}
-    @Step
-    public static void logAllure(String log) {
-        logger.info("Logged to allure: " + log);
-    }
+
 }

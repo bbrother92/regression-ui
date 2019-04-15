@@ -6,7 +6,7 @@ import mid.pages.LoginPage;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.open;
-import static com.codeborne.selenide.Selenide.sleep;
+import static mid.util.Utils.logAllure;
 
 @Feature("Тесты валидации полей логина и тест входа/выхода")
 public class CompareTest extends BaseTest {
@@ -22,10 +22,7 @@ public class CompareTest extends BaseTest {
         open(URL);
         lp.gotoCatalog("Мелкая бытовая техника", "Микроволновки Мидеа");
         String itemTitle = cp.addOnCatalog();
-        System.out.println(itemTitle);
         cp.checkInComparelist(itemTitle);
-
-
     }
 
     @Test
@@ -36,7 +33,6 @@ public class CompareTest extends BaseTest {
         open(URL);
         lp.gotoCatalog("Мелкая бытовая техника", "Микроволновки Мидеа");
         String itemTitle = cp.addOnCard();
-        System.out.println(itemTitle);
         cp.checkInComparelist(itemTitle);
     }
 

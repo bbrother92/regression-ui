@@ -2,10 +2,6 @@ package mid.pages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import mid.BaseTest;
-import mid.util.Utils;
-
-import java.util.Scanner;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
@@ -62,7 +58,6 @@ public class LoginPage {
         $x(menuf).waitUntil(Condition.visible, 5000).hover();
         String smenuf = String.format(this.submenuLoc, submenu);
         $x(smenuf).waitUntil(Condition.visible, 5000).scrollTo().click();
-        System.out.println("sleeept2");
     }
 
 
