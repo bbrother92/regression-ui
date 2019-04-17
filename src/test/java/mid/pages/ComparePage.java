@@ -23,13 +23,17 @@ public class ComparePage {
      */
     public SelenideElement compareListLoc = $(".btn-compare.compare");
     public String listTitles = "#product-comparison  strong > a";
+    public String deleteBtn = ".cell.remove.product a";
+    public String emptyListMsg = "Товары для сравнения не выбраны.";
+    public String emptyListLoc = ".message.info.empty";
+    public String compareListResult  = "#product-comparison  strong > a";
 
 
     public String addOnCatalog() {
         itemCard.waitUntil(Condition.visible, 5000).scrollTo().click(); // click on item block to show up compare button
         String itemTitle = itemCardLink.waitUntil(Condition.visible, 5000).getText();
         compareBtn.waitUntil(Condition.visible, 5000).scrollTo().click();
-        logAllure("item added to list "+itemTitle);
+        logAllure("item added to list " + itemTitle);
         return itemTitle;
     }
 
@@ -38,11 +42,10 @@ public class ComparePage {
         String itemTitle = itemCardLink.waitUntil(Condition.visible, 5000).getText();
         itemCardLink.waitUntil(Condition.visible, 5000).click();
         compareBtn.waitUntil(Condition.visible, 5000).scrollTo().click();
-        logAllure("item added to list "+itemTitle);
+        logAllure("item added to list " + itemTitle);
         return itemTitle;
     }
 
-    //todo test this
     public void checkInComparelist(String needle) {
         compareListLoc.waitUntil(Condition.visible, 5000).click();
         logAllure("switching to new tab");
@@ -50,11 +53,33 @@ public class ComparePage {
         $(listTitles).waitUntil(Condition.visible, 5000);
         Boolean result = false;
         for (SelenideElement item : $$(listTitles)) {
-            logAllure("items in list: "+item.getText());
+            logAllure("items in list: " + item.getText());
             if (item.getText().toLowerCase().contains(needle.toLowerCase())) {
                 result = true;
             }
         }
         Assert.assertTrue(result);
     }
+
+    public void deleteInComparelist() {
+        compareListLoc.waitUntil(Condition.visible, 5000).click();
+        logAllure("switching to new tab");
+        switchTo().window(1);
+        $(deleteBtn).waitUntil(Condition.visible, 5000);
+        $$(deleteBtn).size()
+
+        //todo reverse
+//        for (SelenideElement item : ) {
+//            System.out.printf("===================== \n");
+////            System.out.println("DELETING ITEM: "+$(compareListResult).getText());
+//            sleep(10000);
+//            item.click();
+//        }
+
+
+
+        $(emptyListLoc).shouldHave(Condition.text(emptyListMsg));
+
+    }
 }
+//todo check if item avaliable for purchase

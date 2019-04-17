@@ -39,9 +39,6 @@ public abstract class BaseTest {
     @AfterMethod
     public void tearDownMethod(Method method) {
         logAllure("Exiting test method: " + method.getName());
-//        WebDriverRunner.getWebDriver().manage().deleteAllCookies();
-//        clearBrowserCookies();
-//        clearBrowserLocalStorage();
         close();
     }
 
@@ -60,9 +57,5 @@ public abstract class BaseTest {
         logAllure("Exiting test suite " + context.getCurrentXmlTest().getSuite().getName());
         close();
     }
-
-    //	@AfterTest
-//	public void clear() {
-//	}
 
 }
