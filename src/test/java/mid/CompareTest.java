@@ -7,6 +7,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.open;
+import static mid.util.Utils.debug;
 
 @Feature("Тесты работы листа сравнений")
 public class CompareTest extends BaseTest {
@@ -46,12 +47,15 @@ public class CompareTest extends BaseTest {
     }
 
     @Test
-    public void compareOnCardTest2() {
+    public void deleteTest() {
         LoginPage lp = open(URL, LoginPage.class);
         ComparePage cp = new ComparePage();
         lp.toLoginForm().login("johndoetestexample2018@gmail.com", "Test2018");
         open(URL);
+        debug();
+        lp.gotoCatalog("Отдельностоящая техника", "Посудомоечные машины");
+        String itemTitle = cp.addOnCard();
+        cp.checkInComparelist(itemTitle);
         cp.deleteInComparelist();
     }
-
 }

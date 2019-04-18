@@ -1,10 +1,12 @@
 package mid.pages;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import org.testng.Assert;
 
 import static com.codeborne.selenide.Selenide.*;
+import static mid.util.Utils.debug;
 import static mid.util.Utils.logAllure;
 
 
@@ -26,7 +28,7 @@ public class ComparePage {
     public String deleteBtn = ".cell.remove.product a";
     public String emptyListMsg = "Товары для сравнения не выбраны.";
     public String emptyListLoc = ".message.info.empty";
-    public String compareListResult  = "#product-comparison  strong > a";
+    public String compareListResult = "#product-comparison  strong > a";
 
 
     public String addOnCatalog() {
@@ -48,8 +50,9 @@ public class ComparePage {
 
     public void checkInComparelist(String needle) {
         compareListLoc.waitUntil(Condition.visible, 5000).click();
-        logAllure("switching to new tab");
+        logAllure("switching to new tab to check item");
         switchTo().window(1);
+//        switchTo(); todo why
         $(listTitles).waitUntil(Condition.visible, 5000);
         Boolean result = false;
         for (SelenideElement item : $$(listTitles)) {
@@ -63,19 +66,15 @@ public class ComparePage {
 
     public void deleteInComparelist() {
         compareListLoc.waitUntil(Condition.visible, 5000).click();
-        logAllure("switching to new tab");
-        switchTo().window(1);
+        logAllure("switching to new tab to delete item");
+//        switchTo().window(1);
         $(deleteBtn).waitUntil(Condition.visible, 5000);
-        $$(deleteBtn).size()
-
-        //todo reverse
-//        for (SelenideElement item : ) {
-//            System.out.printf("===================== \n");
-////            System.out.println("DELETING ITEM: "+$(compareListResult).getText());
-//            sleep(10000);
-//            item.click();
-//        }
-
+        ElementsCollection items = $$(deleteBtn);
+        // deleting from another side of list
+        for (int i = items.size()-1; i >= 0; i--) {
+            logAllure("DELETING ITEM: " + $$(compareListResult).get(i).getText());
+            items.get(i).click();
+        }
 
 
         $(emptyListLoc).shouldHave(Condition.text(emptyListMsg));
