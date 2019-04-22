@@ -30,11 +30,16 @@ public class Utils {
         String line = textIO.newStringInputReader()
                 .withDefaultValue("ok")
                 .read("Continue");
-        logAllure("after pausing execution" + line + "\n");
+        logAllure("after pausing execution " + line + "\n");
     }
+
 
     @Step
     public static void logAllure(String log) {
         logger.info(": " + log);
+    }
+
+    public static boolean checkSame(String longstring, String needle) {
+        return longstring.trim().toLowerCase().contains(needle.trim().toLowerCase());
     }
 }

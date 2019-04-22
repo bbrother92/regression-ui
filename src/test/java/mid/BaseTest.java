@@ -8,6 +8,8 @@ import org.testng.annotations.*;
 
 import java.lang.reflect.Method;
 import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import static com.codeborne.selenide.Selenide.close;
 import static mid.util.Utils.logAllure;
@@ -27,7 +29,8 @@ public abstract class BaseTest {
 //		Configuration.timeout=4999;
         Locale.setDefault(Locale.ENGLISH);
 //        logger = LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME); //TODO why npe
-
+        Logger parent = Logger.getLogger("com.codeborne.selenide");
+        parent.setLevel(Level.SEVERE); // set loggin lvl for selenide
         logAllure("Starting test suite " + context.getCurrentXmlTest().getSuite().getName());
     }
 

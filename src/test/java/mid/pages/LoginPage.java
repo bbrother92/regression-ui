@@ -70,7 +70,6 @@ public class LoginPage {
         $(accountLink).shouldHave(text(accountLinkTitle));
         accountLink.waitUntil(Condition.visible, 5000).click();
         return page(LoginPage.class);
-
     }
 
     public void logout() {
