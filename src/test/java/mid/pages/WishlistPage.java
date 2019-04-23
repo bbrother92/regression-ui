@@ -6,8 +6,7 @@ import com.codeborne.selenide.SelenideElement;
 import org.testng.Assert;
 
 import static com.codeborne.selenide.Selenide.*;
-import static mid.util.Utils.checkSame;
-import static mid.util.Utils.logAllure;
+import static mid.util.Utils.*;
 
 
 public class WishlistPage {
@@ -17,18 +16,17 @@ public class WishlistPage {
      * Catalog btns
      */
 
-    public SelenideElement itemCard = $("div.hover-box");               // product preview card
-    public SelenideElement itemCardLink = $(".images-container a.product-item-link");     // product card link (item title)
-    public SelenideElement wishlistBtn = $("a.action.towishlist");
+    private SelenideElement itemCard = $("div.hover-box");               // product preview card
+    private SelenideElement itemCardLink = $(".images-container a.product-item-link");     // product card link (item title)
+    private SelenideElement wishlistBtn = $("a.action.towishlist");
     /**
      * Wishlist
      */
-    public SelenideElement wishlistLoc = $("a.wishlist");
-    public String listTitles = ".product-item-name a";
-    public String deleteBtn = ".cell.remove.product a";
-    public String emptyListMsg = "Товары для сравнения не выбраны.";
-    public String emptyListLoc = ".message.info.empty";
-    public String compareListResult = "#product-comparison  strong > a";
+    private SelenideElement wishlistLoc = $("a.wishlist");
+    private String listTitles = ".product-item-name a";
+    private String deleteBtn = "a[data-post-remove]";
+    private String emptyListMsg = "В листе пожеланий пусто.";
+    private String emptyListLoc = ".message.info.empty";
 
 
     public String addOnCatalog() {
@@ -63,17 +61,19 @@ public class WishlistPage {
         Assert.assertTrue(result);
     }
 
-//    public void deleteInComparelist() {
-//        compareListLoc.waitUntil(Condition.visible, 5000).click();
-//        logAllure("switching to new tab to delete item");
-//        $(deleteBtn).waitUntil(Condition.visible, 5000);
-//        ElementsCollection items = $$(deleteBtn);
-//        // deleting from another side of list
-//        for (int i = items.size() - 1; i >= 0; i--) {
-//            logAllure("DELETING ITEM: " + $$(compareListResult).get(i).getText());
-//            items.get(i).click();
-//        }
-//        $(emptyListLoc).shouldHave(Condition.text(emptyListMsg));
-//    }
+    public void deleteInWl() {
+        wishlistLoc.waitUntil(Condition.visible, 5000).click();
+        debug();
+        switchTo().window(1);
+        logAllure("switching to new tab to delete item");
+        $(deleteBtn).waitUntil(Condition.visible, 5000);
+        ElementsCollection items = $$(deleteBtn);
+        // deleting from another side of list
+        for (int i = items.size() - 1; i >= 0; i--) {
+            logAllure("DELETING ITEM: " + $$(listTitles).get(i).getText());
+            items.get(i).scrollTo().click();
+        }
+        $(emptyListLoc).shouldHave(Condition.text(emptyListMsg));
+    }
 }
 //todo check if item avaliable for purchase

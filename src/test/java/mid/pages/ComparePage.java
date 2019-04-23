@@ -3,6 +3,7 @@ package mid.pages;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Description;
 import org.testng.Assert;
 
 import static com.codeborne.selenide.Selenide.*;
@@ -11,23 +12,20 @@ import static mid.util.Utils.logAllure;
 
 public class ComparePage {
 
-
     /**
      * Catalog compare btns
      */
-
-    public SelenideElement itemCard = $("div.hover-box");               // product preview card
-    public SelenideElement itemCardLink = $(".images-container a.product-item-link");     // product card link (item title)
-    public SelenideElement compareBtn = $("a.action.tocompare");
+    private SelenideElement itemCard = $("div.hover-box");               // product preview card
+    private SelenideElement itemCardLink = $(".images-container a.product-item-link");     // product card link (item title)
+    private SelenideElement compareBtn = $("a.action.tocompare");
     /**
      * Comparelist
      */
-    public SelenideElement compareListLoc = $(".btn-compare.compare");
-    public String listTitles = "#product-comparison  strong > a";
-    public String deleteBtn = ".cell.remove.product a";
-    public String emptyListMsg = "Товары для сравнения не выбраны.";
-    public String emptyListLoc = ".message.info.empty";
-    public String compareListResult = "#product-comparison  strong > a";
+    private SelenideElement compareListLoc = $(".btn-compare.compare");
+    private String listTitles = "#product-comparison  strong > a";
+    private String deleteBtn = ".cell.remove.product a";
+    private String emptyListMsg = "Товары для сравнения не выбраны.";
+    private String emptyListLoc = ".message.info.empty";
 
 
     public String addOnCatalog() {
@@ -49,9 +47,8 @@ public class ComparePage {
 
     public void checkInComparelist(String needle) {
         compareListLoc.waitUntil(Condition.visible, 5000).click();
-        logAllure("switching to new tab to check item:"+needle);
+        logAllure("switching to new tab to check item:" + needle);
         switchTo().window(1);
-//        switchTo(); todo why
         $(listTitles).waitUntil(Condition.visible, 5000);
         Boolean result = false;
         for (SelenideElement item : $$(listTitles)) {
@@ -63,7 +60,8 @@ public class ComparePage {
         Assert.assertTrue(result);
     }
 
-    public void deleteInComparelist() {
+    @Description("Удалить в листе")
+    public void deleteInCl() {
         compareListLoc.waitUntil(Condition.visible, 5000).click();
         logAllure("switching to new tab to delete item");
 //        switchTo().window(1);
@@ -71,7 +69,7 @@ public class ComparePage {
         ElementsCollection items = $$(deleteBtn);
         // deleting from another side of list
         for (int i = items.size() - 1; i >= 0; i--) {
-            logAllure("DELETING ITEM: " + $$(compareListResult).get(i).getText());
+            logAllure("DELETING ITEM: " + $$(listTitles).get(i).getText());
             items.get(i).click();
         }
         $(emptyListLoc).shouldHave(Condition.text(emptyListMsg));

@@ -57,7 +57,7 @@ public class CompareTest extends BaseTest {
         lp.gotoCatalog("Отдельностоящая техника", "Посудомоечные машины");
         String itemTitle = cp.addOnCard();
         cp.checkInComparelist(itemTitle);
-        cp.deleteInComparelist();
+        cp.deleteInCl();
     }
 
     @Description("Добавить в лист сравнений через quickview в каталоге без логина")
