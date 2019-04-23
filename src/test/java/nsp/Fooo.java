@@ -6,6 +6,7 @@ import mid.BaseTest;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.url;
@@ -14,30 +15,31 @@ public class Fooo extends BaseTest {
 
     private static final String URL = "https://nsp.mygento.net/ru/";
     //    private static final String URL = "https://nsp.mygento.net/ru/coffee-capsules/original";
-    private static ArrayList<String> links = new ArrayList();
-
+    private static LinkedHashSet<String> links = new LinkedHashSet();
 
     @Test
     public void getHeaderTags() {
         open(URL);
 //        executeJavaScript("h3.forEach(item => console.log(item.textContent));"); // todo why doesnt work
         links.addAll(grabLinkstoList(links));
-        ArrayList<String> newlist = new ArrayList();
+        LinkedHashSet<String> newlist = new LinkedHashSet();
 
         for (String link : links) {
             open(link);
             System.out.println("\n******* opening " + link + "\n");
             newlist.addAll(grabLinkstoList(  links));
         }
-        System.out.println();
         System.out.println(newlist);
-//        overLinksGetTags(links);
+//        overLinksGetTags(newlist);
     }
 
-    public ArrayList<String> grabLinkstoList(ArrayList links) {
+    public LinkedHashSet<String> grabLinkstoList(LinkedHashSet links) {
+        /*
+         * Gets links from the page and returns set
+         */
         ElementsCollection items = $$x("//a[@href][not(contains(@href,'#')) and not(contains(@href,'_zzz_'))]");
         int index = 0;
-        ArrayList newlist = new ArrayList();
+        LinkedHashSet newlist = new LinkedHashSet();
         for (SelenideElement item : items) {
             System.out.println("Link: " + index++ + " " + item);
             newlist.add(item.getAttribute("href"));
@@ -45,8 +47,10 @@ public class Fooo extends BaseTest {
         return newlist;
     }
 
-    public void overLinksGetTags(ArrayList<String> ar) {
-
+    public void overLinksGetTags(LinkedHashSet<String> ar) {
+        /**
+         * Get headers tags
+         */
         for (String link : ar) {
             System.out.println("========================");
             open(link);
