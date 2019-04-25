@@ -5,4 +5,3 @@ build/
 .allure
 *.log
 src/test/resources/*.log
-src/test/java/mid/Fooo.java
