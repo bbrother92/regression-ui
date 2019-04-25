@@ -5,17 +5,17 @@ import com.codeborne.selenide.SelenideElement;
 import mid.BaseTest;
 import org.testng.annotations.Test;
 
-import java.util.ArrayList;
 import java.util.LinkedHashSet;
 
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.url;
 
-public class Fooo extends BaseTest {
+public class FindTagsTest extends BaseTest {
 
     private static final String URL = "https://nsp.mygento.net/ru/";
-    //    private static final String URL = "https://nsp.mygento.net/ru/coffee-capsules/original";
     private static LinkedHashSet<String> links = new LinkedHashSet();
+
+//     todo collect 404 links
 
     @Test
     public void getHeaderTags() {
@@ -27,10 +27,10 @@ public class Fooo extends BaseTest {
         for (String link : links) {
             open(link);
             System.out.println("\n******* opening " + link + "\n");
-            newlist.addAll(grabLinkstoList(  links));
+            newlist.addAll(grabLinkstoList(links));
         }
         System.out.println(newlist);
-//        overLinksGetTags(newlist);
+        overLinksGetTags(newlist);
     }
 
     public LinkedHashSet<String> grabLinkstoList(LinkedHashSet links) {
@@ -42,7 +42,10 @@ public class Fooo extends BaseTest {
         LinkedHashSet newlist = new LinkedHashSet();
         for (SelenideElement item : items) {
             System.out.println("Link: " + index++ + " " + item);
-            newlist.add(item.getAttribute("href"));
+
+            if (item.getAttribute("href").contains("http")) {
+                newlist.add(item.getAttribute("href"));
+            }
         }
         return newlist;
     }
