@@ -42,8 +42,8 @@ public class Utils {
 
 
     @Step
-    public static void logAllure(String log) {
-        logger.info(": " + log);
+    public static void logAllure(Object log) {
+        logger.info(": " + log.toString());
     }
 
     public static boolean checkSame(String longstring, String needle) {
