@@ -3,6 +3,7 @@ package mid.util;
 import io.qameta.allure.Step;
 import org.beryx.textio.TextIO;
 import org.beryx.textio.TextIoFactory;
+import org.openqa.selenium.JavascriptExecutor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import static com.codeborne.selenide.Selenide.screenshot;
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 
 public class Utils {
@@ -31,6 +33,11 @@ public class Utils {
                 .withDefaultValue("ok")
                 .read("Continue");
         logAllure("after pausing execution " + line + "\n");
+    }
+
+    public static void higlighElement(String selector) {
+        JavascriptExecutor jse = (JavascriptExecutor) getWebDriver();
+        jse.executeScript(String.format("document.querySelector('%s').style.border='3px solid red';", selector));
     }
 
 
