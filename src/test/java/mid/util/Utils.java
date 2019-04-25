@@ -35,10 +35,22 @@ public class Utils {
         logAllure("after pausing execution " + line + "\n");
     }
 
-    public static void higlighElement(String selector) {
+
+    public static void higlighElement(String cssselector) {
         JavascriptExecutor jse = (JavascriptExecutor) getWebDriver();
-        jse.executeScript(String.format("document.querySelector('%s').style.border='3px solid red';", selector));
+        jse.executeScript(String.format("document.querySelector('%s').style.border='3px solid red';", cssselector));
     }
+
+    /**
+     * Locates element at position (Actually its just wrapper of xpath string)
+     * @param element xpath
+     * @param position First element has index 1
+     * @return
+     */
+    public static String elementAt(String element,int position) {
+        return String.format("(%s)[position()=%d]",element,position); //todo implement item #
+    }
+
 
 
     @Step
