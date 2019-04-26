@@ -28,7 +28,7 @@ public class CompareTest extends BaseTest {
     public void compareOnCatalogTest(String menu, String submenu) {
         LoginPage lp = open(URL, LoginPage.class);
         ComparePage cp = new ComparePage();
-        lp.toLoginForm().login("johndoetestexample2018@gmail.com", "Test2018");
+        lp.toLoginForm().login("johndoetestexample2018@gmail.com", "Test2018").confirmLogged();
         open(URL);
         lp.gotoCatalog(menu, submenu);
         String itemTitle = cp.addOnCatalog();
@@ -40,7 +40,7 @@ public class CompareTest extends BaseTest {
     public void compareOnCardTest() {
         LoginPage lp = open(URL, LoginPage.class);
         ComparePage cp = new ComparePage();
-        lp.toLoginForm().login("johndoetestexample2018@gmail.com", "Test2018");
+        lp.toLoginForm().login("johndoetestexample2018@gmail.com", "Test2018").confirmLogged();
         open(URL);
         lp.gotoCatalog("Отдельностоящая техника", "Посудомоечные машины");
         String itemTitle = cp.addOnCard();
@@ -52,7 +52,7 @@ public class CompareTest extends BaseTest {
     public void deleteTest() {
         LoginPage lp = open(URL, LoginPage.class);
         ComparePage cp = new ComparePage();
-        lp.toLoginForm().login("johndoetestexample2018@gmail.com", "Test2018");
+        lp.toLoginForm().login("johndoetestexample2018@gmail.com", "Test2018").confirmLogged();
         open(URL);
         lp.gotoCatalog("Отдельностоящая техника", "Посудомоечные машины");
         String itemTitle = cp.addOnCard();

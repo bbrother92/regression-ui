@@ -7,6 +7,7 @@ import io.qameta.allure.Description;
 import org.testng.Assert;
 
 import static com.codeborne.selenide.Selenide.*;
+import static mid.util.Utils.checkSame;
 import static mid.util.Utils.logAllure;
 
 
@@ -53,7 +54,7 @@ public class ComparePage {
         Boolean result = false;
         for (SelenideElement item : $$(listTitles)) {
             logAllure("items in list: " + item.getText());
-            if (item.getText().toLowerCase().contains(needle.toLowerCase())) {
+            if (checkSame(item.getText(),needle)) {
                 result = true;
             }
         }

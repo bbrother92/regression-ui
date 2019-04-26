@@ -28,7 +28,7 @@ public class WishlistTest extends BaseTest {
     public void wishlistOnCatalogTest(String menu, String submenu) {
         LoginPage lp = open(URL, LoginPage.class);
         WishlistPage p = new WishlistPage();
-        lp.toLoginForm().login("johndoetestexample2018@gmail.com", "Test2018");
+        lp.toLoginForm().login("johndoetestexample2018@gmail.com", "Test2018").confirmLogged();
         open(URL);
         lp.gotoCatalog(menu, submenu);
         String itemTitle = p.addOnCatalog();
@@ -40,7 +40,7 @@ public class WishlistTest extends BaseTest {
     public void wishlistOnCardTest() {
         LoginPage lp = open(URL, LoginPage.class);
         WishlistPage p = new WishlistPage();
-        lp.toLoginForm().login("johndoetestexample2018@gmail.com", "Test2018");
+        lp.toLoginForm().login("johndoetestexample2018@gmail.com", "Test2018").confirmLogged();
         open(URL);
         lp.gotoCatalog("Отдельностоящая техника", "Посудомоечные машины");
         String itemTitle = p.addOnCard();
@@ -52,7 +52,7 @@ public class WishlistTest extends BaseTest {
     public void deleteTest() {
         LoginPage lp = open(URL, LoginPage.class);
         WishlistPage p = new WishlistPage();
-        lp.toLoginForm().login("johndoetestexample2018@gmail.com", "Test2018");
+        lp.toLoginForm().login("johndoetestexample2018@gmail.com", "Test2018").confirmLogged();
         open(URL);
         lp.gotoCatalog("Отдельностоящая техника", "Посудомоечные машины");
         String itemTitle = p.addOnCard();

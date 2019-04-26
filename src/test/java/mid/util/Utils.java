@@ -13,6 +13,7 @@ import java.util.Date;
 
 import static com.codeborne.selenide.Selenide.screenshot;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+import static com.codeborne.selenide.WebDriverRunner.url;
 
 
 public class Utils {
@@ -32,7 +33,7 @@ public class Utils {
         String line = textIO.newStringInputReader()
                 .withDefaultValue("ok")
                 .read("Continue");
-        logAllure("after pausing execution " + line + "\n");
+        logAllure(String.format("after pausing execution:%s on url:%s", line, url()));
     }
 
 
@@ -43,14 +44,14 @@ public class Utils {
 
     /**
      * Locates element at position (Actually its just wrapper of xpath string)
-     * @param element xpath
+     *
+     * @param element  xpath
      * @param position First element has index 1
      * @return
      */
-    public static String elementAt(String element,int position) {
-        return String.format("(%s)[position()=%d]",element,position); //todo implement item #
+    public static String elementAt(String element, int position) {
+        return String.format("(%s)[position()=%d]", element, position); //todo implement item #
     }
-
 
 
     @Step

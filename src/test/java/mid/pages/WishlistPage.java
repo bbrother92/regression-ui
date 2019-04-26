@@ -63,7 +63,6 @@ public class WishlistPage {
 
     public void deleteInWl() {
         wishlistLoc.waitUntil(Condition.visible, 5000).click();
-        debug();
         switchTo().window(1);
         logAllure("switching to new tab to delete item");
         $(deleteBtn).waitUntil(Condition.visible, 5000);
