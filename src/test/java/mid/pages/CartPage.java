@@ -58,7 +58,8 @@ public class CartPage {
     }
 
     public void checkInCartlist(String needle) {
-        sleep(1000); //todo
+        sleep(1000); //todo need this due to next click is too fast and shows empty  shopping cart
+        $(cartLoc).shouldBe(Condition.visible);
         $(cartLoc).waitUntil(Condition.visible, 5000).click();
         logAllure("checking item present in cart list:" + needle);
         $(listTitles).waitUntil(Condition.visible, 5000);

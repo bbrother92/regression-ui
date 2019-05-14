@@ -33,7 +33,7 @@ public class CartTest extends BaseTest {
     }
 
 //    @Test(dataProvider = "cataloglinks", invocationCount = 10)
-    @Test(invocationCount = 20)
+    @Test(invocationCount = 3)
 //    public void addOnCatalogTest(String menu, String submenu) {
     public void addOnCatalogTest() {
         LoginPage lp = open(URL, LoginPage.class);
