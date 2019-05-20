@@ -2,6 +2,7 @@ package mid;
 
 import com.codeborne.selenide.Condition;
 import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import mid.pages.RegPage;
@@ -70,7 +71,8 @@ public class RegTest extends BaseTest {
                 .submit("Максимилиан", "Фамилия", "john2018gmail.com", "test5", "test5");
         Assert.assertEquals(new RegPage().passMsgLoc.getText(), "Минимальная длина этого поля должна быть равна или больше 6 символов. Пробелы перед и после символов будут проигнорированы.");
     }
-
+//todo
+    @Story(value = "Существующий пользователь")
     @Test
     public void sameUserTest() {
         open(URL, RegPage.class)
