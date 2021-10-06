@@ -26,7 +26,7 @@ public class CartTest extends BaseTest {
     @Test
     public void addOnCardTest() {
         LoginPage lp = open(URL, LoginPage.class);
-        lp.toLoginForm().login("johndoetestexample2018@gmail.com", "Test2018").confirmLogged();
+        lp.toLoginForm().login("johndoetestexample2018@gmail.com", "").confirmLogged();
         open(URL);
         lp.gotoCatalog("Мелкая бытовая техника", "Тостеры");
         new CartPage().addOnCard();
